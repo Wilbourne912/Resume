@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent Wilbourne — Backend Development, Lead Generation & Sales Development</title>
+<meta name="description" content="Backend development, lead generation, and sales development for small businesses.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f7f9;
+    --text: #1a1d23;
+    --text-muted: #4a5160;
+    --border: #e2e5ea;
+    --accent: #1f4b99;
+    --accent-dark: #163a7a;
+    --radius: 8px;
+    --max-width: 860px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* NAV */
+  header.site-nav {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .site-nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .site-nav .brand {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  .site-nav nav a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-left: 20px;
+  }
+
+  .site-nav nav a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h1, h2, h3 { line-height: 1.25; font-weight: 700; }
+
+  h2.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 700px) {
+    .hero-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .hero-text { flex: 1; }
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .hero-photo-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px dashed #c8ccd4;
+    background: var(--bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    padding: 8px;
+    line-height: 1.3;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+    margin-bottom: 16px;
+  }
+
+  .hero p.lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    margin-bottom: 28px;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+
+  .btn:hover { text-decoration: none; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .btn-primary:hover { background: var(--accent-dark); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .btn-secondary:hover { background: var(--bg-alt); }
+
+  /* ABOUT */
+  .about p { color: var(--text-muted); max-width: 680px; margin-bottom: 14px; }
+
+  /* EXPERIENCE */
+  .job-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .job-title { font-size: 1.15rem; font-weight: 700; }
+
+  .job-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .job-summary {
+    color: var(--text-muted);
+    margin: 10px 0 18px;
+  }
+
+  .job-subhead {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  ul.job-list {
+    list-style: disc;
+    padding-left: 20px;
+    color: var(--text-muted);
+  }
+
+  ul.job-list li { margin-bottom: 6px; }
+
+  .skills-line {
+    margin-top: 18px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .skills-line strong { color: var(--text); }
+
+  /* PROJECTS */
+  .project-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .project-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: #e8eefb;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+
+  .project-card p { color: var(--text-muted); margin-bottom: 10px; }
+
+  .project-links {
+    margin-top: 14px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .placeholder-note {
+    font-size: 0.85rem;
+    color: #8a6d00;
+    background: #fff8e1;
+    border: 1px dashed #e0c460;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 700px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+  }
+
+  .service-card ul {
+    list-style: disc;
+    padding-left: 18px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  .service-card ul li { margin-bottom: 6px; }
+
+  /* CONTACT */
+  .contact-cta {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .contact-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-list li {
+    font-size: 0.98rem;
+  }
+
+  .contact-list span.label {
+    display: inline-block;
+    width: 90px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 28px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="container">
+    <div class="brand">Vincent Wilbourne</div>
+    <nav>
+      <a href="#projects">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Backend Development + Lead Generation + Sales Development</h1>
+        <p class="lead">
+          I build and improve web applications while helping businesses identify, reach, and connect with potential customers.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- REPLACE THIS: swap the placeholder div below for a real photo, e.g.:
+      <img src="headshot.jpg" alt="Vincent Wilbourne" class="hero-photo">
+      Optional — delete this whole block if you'd rather not use a photo. -->
+      <div class="hero-photo-placeholder">[ADD PHOTO]</div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <p>
+      I work at the intersection of two things most businesses need but rarely find in one person: someone who can build and maintain the technology, and someone who understands how to find and reach customers.
+    </p>
+    <p>
+      On the development side, I build and fix backend functionality, integrate APIs, work with databases, and handle the practical, unglamorous work of keeping a web application running well. On the sales and lead-generation side, I've spent time doing outbound prospecting, researching businesses and decision-makers, and helping companies build and organize the lists they need to grow.
+    </p>
+    <p>
+      I'm not positioning myself as a large agency or a twenty-year veteran. I'm straightforward about what I can do, and I focus on delivering real, usable results rather than overselling.
+    </p>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="job-header">
+      <div class="job-title">Freelance SDR & Lead Generation Specialist</div>
+    </div>
+    <div class="job-meta">Savannah, Georgia Area &middot; June 2024 – May 2026 &middot; Freelance</div>
+
+    <p class="job-summary">
+      Provided freelance sales development and lead-generation support to businesses in the Savannah, Georgia area.
+    </p>
+
+    <div class="job-subhead">Sales Development</div>
+    <ul class="job-list">
+      <li>Conducted outbound prospecting and cold outreach to identify potential customers.</li>
+      <li>Researched businesses and decision-makers to build targeted prospect lists.</li>
+      <li>Initiated conversations with prospects and qualified potential opportunities.</li>
+      <li>Supported businesses with appointment-setting and early-stage sales development.</li>
+    </ul>
+
+    <div class="job-subhead">Lead Generation</div>
+    <ul class="job-list">
+      <li>Researched local markets to identify potential customers and business opportunities.</li>
+      <li>Built targeted prospect lists based on client-defined criteria.</li>
+      <li>Organized prospect information and maintained outreach tracking.</li>
+      <li>Helped businesses identify and reach prospective customers through targeted outreach.</li>
+    </ul>
+
+    <div class="skills-line">
+      <strong>Core Skills:</strong> Lead Generation &middot; Prospect Research &middot; Cold Outreach &middot; Sales Development &middot; Appointment Setting &middot; Market Research &middot; B2B Prospecting
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="project-card">
+      <span class="project-tag">Featured Project</span>
+      <h3>PAC Platform</h3>
+
+      <!-- REPLACE THIS: project description -->
+      <p><em>[REPLACE THIS: Add a 2–3 sentence description of the PAC Platform — what it does and who it's for.]</em></p>
+
+      <!-- REPLACE THIS: your role -->
+      <p><strong>My Role:</strong> <em>[REPLACE THIS: e.g., "Technical Lead — designed and built the platform end-to-end."]</em></p>
+
+      <!-- REPLACE THIS: technologies used -->
+      <p><strong>Technologies:</strong> <em>[REPLACE THIS: e.g., "HTML, CSS, JavaScript, Supabase, Render, Stripe"]</em></p>
+
+      <div class="placeholder-note">
+        Placeholder — swap this note out once the details above are filled in.
+      </div>
+
+      <div class="project-links">
+        <!-- REPLACE THIS: live project link -->
+        <a href="#" target="_blank" rel="noopener">Live Site &rarr;</a>
+        <!-- REPLACE THIS: GitHub repository link -->
+        <a href="#" target="_blank" rel="noopener">GitHub Repo &rarr;</a>
+      </div>
+
+      <!-- REPLACE THIS: swap the placeholder div below for a real screenshot, e.g.:
+      <img src="pac-screenshot.png" alt="PAC Platform screenshot" style="margin-top:16px; width:100%; border-radius:6px; border:1px solid var(--border);">
+      -->
+      <div style="margin-top:16px; width:100%; aspect-ratio:16/9; border:1px dashed #c8ccd4; border-radius:6px; background:var(--bg-alt); display:flex; align-items:center; justify-content:center; color:var(--text-muted); font-size:0.85rem;">
+        [ADD PROJECT SCREENSHOT]
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <h3>Backend & Web Development</h3>
+        <ul>
+          <li>Backend functionality</li>
+          <li>APIs and integrations</li>
+          <li>Database/Supabase work</li>
+          <li>Forms and authentication</li>
+          <li>Bug fixes and small web-app improvements</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Lead Generation</h3>
+        <ul>
+          <li>Prospect research</li>
+          <li>Targeted lead lists</li>
+          <li>Market research</li>
+          <li>Lead qualification</li>
+          <li>Local business prospecting</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <h3>Sales Development</h3>
+        <ul>
+          <li>Cold outreach</li>
+          <li>Prospect qualification</li>
+          <li>Appointment setting</li>
+          <li>B2B prospecting</li>
+          <li>Sales pipeline support</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-cta">Have a project or need help finding customers?</p>
+    <ul class="contact-list">
+      <li><span class="label">Email</span> <a href="mailto:REPLACE-THIS@example.com">REPLACE-THIS@example.com</a></li>
+      <!-- REPLACE THIS: email address -->
+
+      <li><span class="label">GitHub</span> <a href="https://github.com/Wilbourne912" target="_blank" rel="noopener">github.com/Wilbourne912</a></li>
+
+      <li><span class="label">LinkedIn</span> <em>[REPLACE THIS: add LinkedIn URL here if/when you create one]</em></li>
+      <!-- REPLACE THIS: LinkedIn link, or remove this line entirely if not used -->
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 Vincent Wilbourne. Built and maintained from Android.
+  </div>
+</footer>
+
+</body>
+</html>
